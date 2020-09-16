@@ -16,10 +16,14 @@ class Api::ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       image_path: params[:image_path],
-      description: params[:description]
+      description: params[:description],
+      inventory: params[:inventory]
     )
-    @product.save
-    render "show.json.jb"
+    if @product.save #happy path
+      render "show.json.jb"
+    else #sad path
+      render json: { errors: @product.errors.full_messages }, status: 422
+    end
   end
   # In backend, pass the POST key-value pairings through Insomnia
 
@@ -30,9 +34,14 @@ class Api::ProductsController < ApplicationController
     @product.price = params[:price] || @product.price
     @product.image_path = params[:image_path] || @product.image_path
     @product.description = params[:description] || @product.description
+    @product.inventory = params[:inventory] || @product.inventory
 
-    @product.save
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { errors: @product.errors.full_messages }, status: 422
+    end
+
   end
   # In backend, pass the PATCH key-value pairings through Insomnia
   # If you don't pass something in the params hash, you're overriding the existing code with `null` -- use || to selectively update.
