@@ -7,7 +7,10 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates :inventory, numericality: { greater_than: 0 }
 
+#Class method
+  # scope :name_search, -> (search_term) { where ("name iLIKE ?", "%#{search_term}%") }
 
+#Instance method/model method
   def is_discounted?
     price < 10
   end
