@@ -5,6 +5,7 @@
   image_path: product.image_path,
   description: product.description,
   inventory: product.inventory,
+  supplier_name: product.supplier.name,
   formatted: {
     is_discounted: product.is_discounted?,
     price: number_to_currency(product.price),

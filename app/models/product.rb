@@ -10,6 +10,13 @@ class Product < ApplicationRecord
 #Class method
   # scope :name_search, -> (search_term) { where ("name iLIKE ?", "%#{search_term}%") }
 
+# Associations method (instance method)... long-hand
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
+
+  belongs_to :supplier
+
 #Instance method/model method
   def is_discounted?
     price < 10
