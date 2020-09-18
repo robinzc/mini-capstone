@@ -13,7 +13,7 @@ class Api::ProductsController < ApplicationController
 
     if params[:sort] == "price"
       if params[:sort_order] == "desc"
-        @products = @products.order(price: :desc)
+        @products = @products.order(price: :desc) 
       else
         @products = @products.order(:price)
       end
@@ -68,7 +68,7 @@ class Api::ProductsController < ApplicationController
   def destroy
     product = Product.find(params[:id])
     product.destroy
-    render json: {message: "Recipe successfully destroyed!"}
+    render json: {message: "Product successfully destroyed!"}
   end
 
 end
