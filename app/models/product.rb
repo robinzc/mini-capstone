@@ -16,6 +16,7 @@ class Product < ApplicationRecord
 
   belongs_to :supplier
   has_many :images
+  has_many :orders
 
 #Instance method/model method
   def is_discounted?
