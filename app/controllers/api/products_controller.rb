@@ -3,10 +3,18 @@ class Api::ProductsController < ApplicationController
   before_action :authenticate_admin, except: [:index, :show]
 
   def index
-    if current_user
-      @products = Product.all 
-      render "index.json.jb"
+    @products = Product
+      .name_search(params[:search])
+      .discounted(params[:discount])
+      .sorted(params[:sort], params[sort_order])
+
+    if params[:category]
+      category = Category.find_by(name: params[:category])
+      @products = category.products
     end
+    render "index.json.jb"
+  end
+  
     # if params[:search]
     #   @products = @products.where("name iLIKE ?", "%#{params[:search]}%")
     # end 
@@ -24,7 +32,7 @@ class Api::ProductsController < ApplicationController
     # else
     #   @products = @products.order(:id)
     # end
-  end
+    
 
   def show
     product_id = params[:id]
