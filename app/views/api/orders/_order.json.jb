@@ -1,5 +1,5 @@
 {
-  id: order.id
+  id: order.id,
   user_id: order.user_id,
   product: order.product,
   quantity: order.quantity,
