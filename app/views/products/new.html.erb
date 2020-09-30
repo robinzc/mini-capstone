@@ -1,0 +1,17 @@
+<h1>New Product</h1>
+
+<form action="/products" method="post">
+  <div>Name: <input type="text" name="name"/></div>
+  <div>Price: <input type="text" name="price"/></div>
+  <div>Description: <input type="text" name="description"/></div>
+  <div>Image URL: <input type="text" name="image_url"/></div>
+  <div>Supplier:
+    <select name="supplier_id" id="">
+    <% Supplier.all.each do |supplier| %>
+      <option value=" <% supplier.id %>=supplier.name %></option>
+    <option value="2">Amazon</option>
+    <option value="3">Fender</option>
+  </div>
+  <input type="submit" value="Create Product" />
+ </form>
+  
