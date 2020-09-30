@@ -1,5 +1,5 @@
 {
   id: image.id,
   url: image.url,
-  product_id: image.product.id
+  product_id: image.product_id
 }

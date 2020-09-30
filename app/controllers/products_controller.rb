@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       price: params[:price],
       description: params[:description],
       inventory: params[:inventory],
-      supplier_id: 2
+      supplier_id: params[:supplier_id]
     )
     puts "=============================== #{@product.errors.full_messages}"
     redirect_to "/products/#{@product.id}"
@@ -31,5 +31,25 @@ class ProductsController < ApplicationController
     render "edit.html.erb"
   end
 
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(
+      name: params[:name],
+      price: params[:price],
+      description: params[:description],
+      supplier_id: params[:supplier_id]
+    )
+      redirect_to "/products/#{@product.id}"
+    else 
+      render json: {errors: @product.errors.full_messages}, status: 422
+    end
+  end
+
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+    redirect_to "/products"
+  
+  end
 
 end
