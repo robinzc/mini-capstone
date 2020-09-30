@@ -1,8 +1,8 @@
 <h1><%= @product.name %></h1>
-<h4>Description <%= @product.description %></h4>
-<h4>Price <%= @product.price %></h4>
+<h4>Description: <%= @product.description %></h4>
+<h4>Price: <%= @product.price %></h4>
 
-<img src="<%= @product.images.first %>" alt="<%= @product.name %>"><br>
+<img src="<%= @product.images.first.url %>" alt="<%= @product.name %>"><br>
 
 <a href="/products">All Products</a>
 <a href="/products/<%= @product.id %>/edit">Edit</a>
